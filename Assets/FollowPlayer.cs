@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
     private void Start()
     {
         offset = new Vector3(1.1f, 2.3f, -2.8f);
-        transform.Rotate(8, 0, 0);
+        transform.Rotate(15, 0, 0);
     }
     void Update()
     {
