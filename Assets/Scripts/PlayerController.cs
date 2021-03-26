@@ -4,36 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-//hi guys it's Amii, Amelia, this is just the basic logic for up down left right 
-    private Rigidbody playerRb;
-    public float speed = 5.0f;
+    public float speed = 0.43f;
+    public Rigidbody rb;
+    public bool PlayerIsOnTheGround = true;
+    private void Start()
 
     // Start is called before the first frame update
     void Start()
+   
     {
-        playerRb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    //movement
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            playerRb.velocity = transform.forward * speed;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            playerRb.velocity = -transform.forward * speed;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            playerRb.velocity = transform.right * speed;
+        float xDirection = Input.GetAxis("Horizontal"); //left, right
+        float zDirection = Input.GetAxis("Vertical"); //Back, forward. In unity z is up and down
+        Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
+        transform.position += moveDirection * speed;
+    }
 
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
+    //Jump
+    private void FixedUpdate()
+    {
+        if (Input.GetButtonDown("Jump") && PlayerIsOnTheGround)
         {
-            playerRb.velocity = -transform.right * speed;
-        } 
+            rb.AddForce(new Vector3(0, 6, 0), ForceMode.Impulse);
+            PlayerIsOnTheGround = false;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            PlayerIsOnTheGround = true;
+        }
     }
 }
