@@ -7,7 +7,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 0.43f;
     public Rigidbody rb;
     public bool PlayerIsOnTheGround = true;
+   
+
+    // Start is called before the first frame update
     private void Start()
+   
     {
         rb = GetComponent<Rigidbody>();
     }
