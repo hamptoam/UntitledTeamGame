@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{ 
+{
+
+//hi guys it's Amii, Amelia, this is just the basic logic for up down left right 
     private Rigidbody playerRb;
     public float speed = 5.0f;
 
