@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0.43f;
+    public float speed = 0.4f;
     public Rigidbody rb;
-    public bool PlayerIsOnTheGround = true;
+    public bool PlayerIsOnTheGround = false;
     public Vector3 jump;
     public float jumpForce = 2.0f;
     // Start is called before the first frame update
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     //movement
     void Update()
     {
-        Debug.Log(PlayerIsOnTheGround);
         float xDirection = Input.GetAxis("Horizontal"); //left, right
         float zDirection = Input.GetAxis("Vertical"); //Back, forward. In unity z is up and down
         Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
@@ -30,13 +29,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && PlayerIsOnTheGround)
         {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             PlayerIsOnTheGround = false;
+            Debug.Log("space hit");
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collisionInfo)
     {
-        if (collision.gameObject.tag == "Ground")
+        Debug.Log(PlayerIsOnTheGround);
+        if (collisionInfo.gameObject.tag == "Ground")
         {
             PlayerIsOnTheGround = true;
         }
