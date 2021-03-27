@@ -448,7 +448,7 @@ MonoBehaviour:
   rb: {fileID: 1083235968}
   PlayerIsOnTheGround: 0
   jump: {x: 0, y: 0, z: 0}
-  jumpForce: 2
+  jumpForce: 2.1
 --- !u!136 &1083235964
 CapsuleCollider:
   m_ObjectHideFlags: 0
