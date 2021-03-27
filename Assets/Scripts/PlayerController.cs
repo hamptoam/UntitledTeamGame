@@ -27,16 +27,14 @@ public class PlayerController : MonoBehaviour
     //Jump
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && PlayerIsOnTheGround)
+        if (Input.GetKey(KeyCode.Space) && PlayerIsOnTheGround)
         {
             PlayerIsOnTheGround = false;
-            Debug.Log("space hit");
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
         }
     }
     private void OnCollisionStay(Collision collisionInfo)
     {
-        Debug.Log(PlayerIsOnTheGround);
         if (collisionInfo.gameObject.tag == "Ground")
         {
             PlayerIsOnTheGround = true;
