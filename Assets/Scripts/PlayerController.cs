@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0.4f;
-    public Rigidbody rb;
+    public Rigidbody PlayerRb;
     public bool PlayerIsOnTheGround = false;
     public Vector3 jump;
     public float jumpForce = 2.0f;
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         jump = new Vector3(0.0f, 2.0f, 0.0f);
-        rb = GetComponent<Rigidbody>();
+        PlayerRb = GetComponent<Rigidbody>();
     }
 
     //movement
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && PlayerIsOnTheGround)
         {
             PlayerIsOnTheGround = false;
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            PlayerRb.AddForce(jump * jumpForce, ForceMode.Impulse);
         }
     }
     private void OnCollisionStay(Collision collisionInfo)
